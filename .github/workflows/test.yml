@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-24.04, macos-latest, windows-latest]
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
         # Exclude macos Python <3.11 due to https://github.com/actions/setup-python/issues/649#issuecomment-1745056485
         exclude:
@@ -42,7 +42,7 @@ jobs:
         run: pip install -e .
 
       - name: Start Xvfb
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-24.04'
         run: |
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
